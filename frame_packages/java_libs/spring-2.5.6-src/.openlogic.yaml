@@ -1,0 +1,18 @@
+--- 
+name: Spring 2.5.6 Source
+platform_id: all
+package_id: spring
+platform_version: all
+distribution_type: src
+distribution_file_uuid_string: openlogic-spring-2.5.6-all-src-1
+platform_vendor: all
+version_visibility: public
+distribution_flavor: ""
+platform_arch: all
+distribution_file_uuid: 1034d8094ca4a66c064bd4a210209792d467306e52c4982bfaee6ed25d6f15ab
+distribution_raw_file: spring-framework-2.5.6-with-dependencies.zip
+release_date: "2008-11-06"
+description: Spring 2.5.6 Source
+distribution_version: 1
+package_version: 2.5.6
+distribution_notes: ""

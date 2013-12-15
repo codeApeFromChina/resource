@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="Welcome" namespace="/test" extends="struts-default">
+		<action name="hello" class="come.xinghen.action.WelcomeAction"
+			method="execute">
+			<result name="success" type="redirect">/addEmployee.jsp?username=${username}
+			</result>
+		</action>
+		<action name="redirect">
+			<result type="redirect">/addEmployee.jsp</result>
+		</action>
+		
+		<action name="redirectAction">
+			<result type="redirectAction">
+				<param name="namespace">/test2</param>
+				<param name="actionName">hello2</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="Demo2" namespace="/test2" extends="struts-default">
+	
+	<!-- 声明拦截器
+		
+		<interceptors>
+			<interceptor name="myinterceptor" class = "xinghen.com.interceptor.SessionInterceptor"></interceptor>
+		</interceptors>
+		
+		 -->
+	<!-- 可以声明一个拦截器栈，然后在后面直接用这个栈的名字 -->
+		<interceptors>
+			<interceptor name="myinterceptor" class = "xinghen.com.interceptor.SessionInterceptor"></interceptor>
+			<interceptor-stack name="permissionStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="myinterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		
+		<global-results>
+			<result>/WEB-INF/pages/message.jsp</result>
+		</global-results>
+			
+		<action name="hello2">
+			<result >
+				/WEB-INF/pages/user.jsp
+			</result>
+			
+		</action>
+		
+		<action name = "list_*"  class ="come.xinghen.action.TestAction" method = "{1}" >
+			
+			<result>/WEB-INF/pages/message.jsp</result>
+			
+			<!-- 在action中使用拦截器，但是必须要同时使用系统自带的拦截器，否则系统的拦截器会不起作用
+			
+			<interceptor-ref name="myinterceptor" ></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			-->   
+			 <!-- 或者直接使用前面定义的拦截器栈 -->
+			 <interceptor-ref name="permissionStack"></interceptor-ref>
+		</action>
+
+
+
+	</package>
+
+
+
+</struts>
