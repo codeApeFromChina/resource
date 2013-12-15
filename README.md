@@ -1,0 +1,4 @@
+resource
+========
+
+my resource repository
